@@ -21,12 +21,27 @@ You can return the answer in any order.
 
 ## Code
 
+### Python
+
 ```python
-def two_sums(nums: list[int], target: int) -> list[int]:
-    hash_map = {}
+def two_sum(nums: list[int], target: int) -> list[int]:
+    m = {}
     for index in range(len(nums)):
         complement = target - nums[index]
-        if complement in hash_map.keys():
-            return [hash_map[complement], index]
+        if complement in m.keys():
+            return [m[complement], index]
         hash_map[nums[index]] = index
+```
+
+### Julia
+
+```julia
+function two_sum(nums, target)
+    m = Dict()
+    for (index, num) in enumerate(nums)
+        complement = target - num
+        complement in keys(m) && (return [m[complement], index])
+        m[num] = index
+    end
+end
 ```
